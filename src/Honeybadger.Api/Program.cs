@@ -2,7 +2,6 @@ using Honeybadger.Api;
 using Honeybadger.Api.Data.Abstractions;
 using Honeybadger.Api.Data.Repository;
 using Honeybadger.Api.GraphQL.Schema.Mutations;
-using Honeybadger.Api.GraphQL.Schema.Queries;
 using Honeybadger.Api.GraphQL.Types;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +14,7 @@ builder.Services.AddSingleton<IContentTypeRepository>(sp =>
 });
 builder.Services.AddScoped<ContentTypeMutation>();
 builder.Services.AddGraphQLServer()
-    .AddQueryType<Query>()
+    .AddQueryType<QueryType>()
     .AddMutationType<MutationType>()
     .AddDefaultTransactionScopeHandler();
 

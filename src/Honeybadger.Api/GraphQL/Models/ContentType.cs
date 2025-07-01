@@ -3,5 +3,6 @@
 public sealed class ContentType
 {
     public string Name { get; set; } = string.Empty;
-    //public List<Field> Fields{ get; set; }
+    public Guid Id { get; set; }
+    public DateTime CreatedAt { get; set; }
 }

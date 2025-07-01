@@ -1,4 +1,5 @@
 ﻿using Honeybadger.Api.GraphQL.Inputs;
+using Honeybadger.Api.GraphQL.Models;
 using Honeybadger.Api.GraphQL.Payloads;
 
 namespace Honeybadger.Api.Data.Abstractions
@@ -10,5 +11,6 @@ namespace Honeybadger.Api.Data.Abstractions
     {
         Task<bool> ExistsAsync(string name, CancellationToken cancellationToken = default);
         Task<AddContentTypePayload> RegisterAsync(AddContentTypeInput contentType, CancellationToken cancellationToken = default);
+        Task<ContentType> GetContentTypeAsync(string name, CancellationToken cancellationToken = default);
     }
 }

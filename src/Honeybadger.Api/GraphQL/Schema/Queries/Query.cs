@@ -1,15 +1,22 @@
+using Honeybadger.Api.Data.Abstractions;
 using Honeybadger.Api.GraphQL.Models;
 
 namespace Honeybadger.Api.GraphQL.Schema.Queries;
 
-public sealed class Query
+public sealed class Query(IContentTypeRepository repository)
 {
-    public string Hello() => "world";
-
-    public ContentType GetContentType(string name)
+    public async Task<ContentType> GetContentType(string name)
     {
-        // This is a placeholder implementation.
-        // In a real application, you would retrieve the content type from a repository or service.
-        return new ContentType { Name = name };
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            throw new ArgumentException("Content type name cannot be null or empty.", nameof(name));
+        }
+        var contentTypeExists = await repository.ExistsAsync(name);
+        if (!contentTypeExists)
+        {
+            throw new GreenDonut.KeyNotFoundException($"Content type '{name}' does not exist.");
+        }
+        var contentType = await repository.GetContentTypeAsync(name);
+        return contentType;
     }
 }

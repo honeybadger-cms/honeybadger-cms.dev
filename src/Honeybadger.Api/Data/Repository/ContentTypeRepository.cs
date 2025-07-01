@@ -1,6 +1,7 @@
 using Dapper;
 using Honeybadger.Api.Data.Abstractions;
 using Honeybadger.Api.GraphQL.Inputs;
+using Honeybadger.Api.GraphQL.Models;
 using Honeybadger.Api.GraphQL.Payloads;
 using Honeybadger.Api.GraphQL.Types;
 using Npgsql;
@@ -58,6 +59,23 @@ public sealed class ContentTypeRepository : IContentTypeRepository
         catch (Exception ex)
         {
             return AddContentTypePayload.Error($"An error occurred while registering content type: {ex.Message}");
+        }
+    }
+
+    public async Task<ContentType> GetContentTypeAsync(string name, CancellationToken cancellationToken = default)
+    {
+        await using var connection = new NpgsqlConnection(_connectionString);
+        await connection.OpenAsync(cancellationToken);
+        try
+        {
+            var selectSql = "SELECT id, name, created_at FROM cms_content_types WHERE table_name = @name fetch first 1 rows only";
+            var contentType = await connection.QuerySingleOrDefaultAsync<ContentType>(selectSql, new { name = name.ToLower() }) ?? throw new GreenDonut.KeyNotFoundException($"Content type '{name}' does not exist.");
+            return contentType;
+        }
+        catch (Exception)
+        {
+
+            throw;
         }
     }
 
