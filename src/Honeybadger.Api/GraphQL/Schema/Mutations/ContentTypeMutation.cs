@@ -1,9 +1,8 @@
-using Honeybadger.Application.ContentType;
-using Honeybadger.Domain.ContentType.Inputs;
-using Honeybadger.Domain.ContentType.Payloads;
-using Honeybadger.Infrastructure.ContentType.Repository;
+using Honeybadger.Api.Data.Abstractions;
+using Honeybadger.Api.GraphQL.Inputs;
+using Honeybadger.Api.GraphQL.Payloads;
 
-namespace Honeybadger.Api.GraphQL.Resolvers;
+namespace Honeybadger.Api.GraphQL.Schema.Mutations;
 
 public sealed class ContentTypeMutation(IContentTypeRepository repository)
 {
@@ -20,9 +19,9 @@ public sealed class ContentTypeMutation(IContentTypeRepository repository)
                 return AddContentTypePayload.Error("At least one field definition is required.");
             }
 
-            var command = new RegisterContentTypeCommand(input);
-            var handler = new RegisterContentTypeHandler(repository);
-            var result = await handler.HandleAsync(command);
+            var result = await repository.ExistsAsync(input.Name.ToLower())
+                ? AddContentTypePayload.Error($"Content type '{input.Name}' already exists.")
+                : await repository.RegisterAsync(input);
             return result;
         }
         catch (Exception ex)

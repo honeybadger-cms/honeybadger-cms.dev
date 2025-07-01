@@ -1,7 +1,9 @@
-using Honeybadger.Api.GraphQL.Resolvers;
-using Honeybadger.Api.GraphQL.Schemas;
-using Honeybadger.Infrastructure.ContentType;
-using Honeybadger.Infrastructure.ContentType.Repository;
+using Honeybadger.Api;
+using Honeybadger.Api.Data.Abstractions;
+using Honeybadger.Api.Data.Repository;
+using Honeybadger.Api.GraphQL.Schema.Mutations;
+using Honeybadger.Api.GraphQL.Schema.Queries;
+using Honeybadger.Api.GraphQL.Types;
 
 var builder = WebApplication.CreateBuilder(args);
 

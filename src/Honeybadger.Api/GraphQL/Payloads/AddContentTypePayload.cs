@@ -1,11 +1,11 @@
-﻿using Honeybadger.Domain.ContentType.Inputs;
+﻿using Honeybadger.Api.GraphQL.Inputs;
 
-namespace Honeybadger.Domain.ContentType.Payloads;
+namespace Honeybadger.Api.GraphQL.Payloads;
 
 public sealed record class AddContentTypePayload
 {
     public string Name { get; set; } = string.Empty;
-    public IReadOnlyList<AddContentTypeFieldOutput> Fields { get; set; } = [];
+    public IReadOnlyList<AddContentTypeFieldPayload> Fields { get; set; } = [];
     public string ErrorMessage { get; set; } = string.Empty;
     public DateTime? CreatedAt { get; set; }
     public bool ContentTypeAdded { get; set; }
@@ -21,7 +21,7 @@ public sealed record class AddContentTypePayload
 
     public static AddContentTypePayload Success(AddContentTypeInput input)
     {
-        var fields = input.Fields.Select(f => new AddContentTypeFieldOutput
+        var fields = input.Fields.Select(f => new AddContentTypeFieldPayload
         {
             Name = f.Name,
             Type = f.Type,

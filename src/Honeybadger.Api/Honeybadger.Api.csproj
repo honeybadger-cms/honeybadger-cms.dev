@@ -15,8 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Honeybadger.Application\Honeybadger.Application.csproj" />
-    <ProjectReference Include="..\Honeybadger.Infrastructure\Honeybadger.Infrastructure.csproj" />
+    <Folder Include="GraphQL\Schema\Subscriptions\" />
   </ItemGroup>
 
 </Project>

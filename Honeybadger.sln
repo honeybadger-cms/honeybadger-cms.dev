@@ -5,12 +5,6 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Honeybadger.Api", "src\Honeybadger.Api\Honeybadger.Api.csproj", "{ABD13119-A233-9F79-B57E-4FE5B8B8DFEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Honeybadger.Infrastructure", "src\Honeybadger.Infrastructure\Honeybadger.Infrastructure.csproj", "{CD65AB0E-9FA1-69DF-673C-0352E18FAA69}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Honeybadger.Domain", "src\Honeybadger.Domain\Honeybadger.Domain.csproj", "{159144B0-ADF3-172D-6071-BC47FE8F72F4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Honeybadger.Application", "src\Honeybadger.Application\Honeybadger.Application.csproj", "{B75724FD-F1EC-CBBC-8A44-A5EA4D1F290A}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
@@ -26,18 +20,6 @@ Global
 		{ABD13119-A233-9F79-B57E-4FE5B8B8DFEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABD13119-A233-9F79-B57E-4FE5B8B8DFEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABD13119-A233-9F79-B57E-4FE5B8B8DFEA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CD65AB0E-9FA1-69DF-673C-0352E18FAA69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD65AB0E-9FA1-69DF-673C-0352E18FAA69}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD65AB0E-9FA1-69DF-673C-0352E18FAA69}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD65AB0E-9FA1-69DF-673C-0352E18FAA69}.Release|Any CPU.Build.0 = Release|Any CPU
-		{159144B0-ADF3-172D-6071-BC47FE8F72F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{159144B0-ADF3-172D-6071-BC47FE8F72F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{159144B0-ADF3-172D-6071-BC47FE8F72F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{159144B0-ADF3-172D-6071-BC47FE8F72F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B75724FD-F1EC-CBBC-8A44-A5EA4D1F290A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B75724FD-F1EC-CBBC-8A44-A5EA4D1F290A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B75724FD-F1EC-CBBC-8A44-A5EA4D1F290A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B75724FD-F1EC-CBBC-8A44-A5EA4D1F290A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

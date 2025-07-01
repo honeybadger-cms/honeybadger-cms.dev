@@ -1,6 +1,6 @@
-using Honeybadger.Api.GraphQL.Resolvers;
+using Honeybadger.Api.GraphQL.Schema.Mutations;
 
-namespace Honeybadger.Api.GraphQL.Schemas
+namespace Honeybadger.Api.GraphQL.Types
 {
     public class MutationType : ObjectType<ContentTypeMutation>
     {
