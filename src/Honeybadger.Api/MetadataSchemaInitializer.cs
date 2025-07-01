@@ -1,7 +1,4 @@
 using Dapper;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
 
 namespace Honeybadger.Api;
@@ -21,6 +18,5 @@ public static class MetadataSchemaInitializer
             created_at TIMESTAMPTZ NOT NULL
         )";
         await connection.ExecuteAsync(ensureTableSql);
-        // Add more metadata tables here as needed
     }
 }

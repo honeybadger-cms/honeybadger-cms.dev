@@ -11,6 +11,6 @@ namespace Honeybadger.Api.Data.Abstractions
     {
         Task<bool> ExistsAsync(string name, CancellationToken cancellationToken = default);
         Task<AddContentTypePayload> RegisterAsync(AddContentTypeInput contentType, CancellationToken cancellationToken = default);
-        Task<ContentType> GetContentTypeAsync(string name, CancellationToken cancellationToken = default);
+        Task<ContentType> GetContentTypeAsync(string name, List<string> columnNames, CancellationToken cancellationToken = default);
     }
 }

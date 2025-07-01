@@ -5,6 +5,7 @@ using Honeybadger.Api.GraphQL.Models;
 using Honeybadger.Api.GraphQL.Payloads;
 using Honeybadger.Api.GraphQL.Types;
 using Npgsql;
+using System.Text;
 
 namespace Honeybadger.Api.Data.Repository;
 
@@ -62,15 +63,26 @@ public sealed class ContentTypeRepository : IContentTypeRepository
         }
     }
 
-    public async Task<ContentType> GetContentTypeAsync(string name, CancellationToken cancellationToken = default)
+    public async Task<ContentType> GetContentTypeAsync(string name, List<string> columnNames, CancellationToken cancellationToken = default)
     {
         await using var connection = new NpgsqlConnection(_connectionString);
         await connection.OpenAsync(cancellationToken);
         try
         {
-            var selectSql = "SELECT id, name, created_at FROM cms_content_types WHERE table_name = @name fetch first 1 rows only";
-            var contentType = await connection.QuerySingleOrDefaultAsync<ContentType>(selectSql, new { name = name.ToLower() }) ?? throw new GreenDonut.KeyNotFoundException($"Content type '{name}' does not exist.");
-            return contentType;
+            if (columnNames != null && columnNames.Count > 0)
+            {
+                StringBuilder sb = new();
+                sb.Append("SELECT ");
+                sb.Append(string.Join(", ", columnNames.Select(c => $"{c}")));
+                sb.Append(" FROM cms_content_types WHERE table_name = @name fetch first 1 rows only");
+                var selectSql = sb.ToString();
+                var contentType = await connection.QuerySingleOrDefaultAsync<ContentType>(selectSql, new { name = name.ToLower() }) ?? throw new GreenDonut.KeyNotFoundException($"Content type '{name}' does not exist.");
+                return contentType;
+            }
+            else
+            {
+                throw new GraphQLException("Column names cannot be null or empty.");
+            }
         }
         catch (Exception)
         {

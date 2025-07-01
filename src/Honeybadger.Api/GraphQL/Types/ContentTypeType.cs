@@ -8,5 +8,14 @@ public class ContentTypeType: ObjectType<ContentType>
     {
         descriptor.Field(ct => ct.Name)
             .Type<StringType>();
+
+        descriptor.Field(ct => ct.CreatedAt)
+            .Name("created_at")
+            .Description("The date and time when the content type was created.")
+            .Type<DateTimeType>();
+
+        descriptor.Field(ct => ct.Id)
+            .Type<NonNullType<UuidType>>()
+            .Description("The unique identifier for the content type.");
     }
 }
